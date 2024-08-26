@@ -16,7 +16,7 @@ const fetchApi = async () => {
   try {
     loading.value = true;
     const responseData = await fetch(
-      "http://localhost:7000/v2/login",
+      "http://localhost:7000/api/login",
       {
         method: "POST",
         headers: {
@@ -68,6 +68,9 @@ const onSubmit = async () => {
     </div>
     <form
       class="border-2 text-slate-800 px-6 rounded-lg py-4 flex flex-col w-[350px]">
+      <h1 class="font-bold text-xl tracking-wide text-center my-3">
+        Hey, you are welcome!
+      </h1>
       <div class="space-y-2">
         <!-- username -->
         <label class="flex flex-col">
@@ -105,8 +108,14 @@ const onSubmit = async () => {
         @click="onSubmit"
         :disabled="loading">
         <Loading v-show="loading" />
-        <span v-show="!loading">Let's start</span>
+        <span v-show="!loading">Sign in</span>
       </button>
+      <RouterLink to="/register">
+        <span
+          class="border px-3 py-2 bg-white text-slate-900 rounded-sm flex justify-center items-center mt-3 hover:bg-slate-200 hover:transition"
+          >Don't have an account ?</span
+        >
+      </RouterLink>
     </form>
   </div>
 </template>

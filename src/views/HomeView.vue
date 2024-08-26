@@ -1,12 +1,17 @@
 <template>
   <div class="flex min-h-screen justify-center items-center gap-4">
     <h1>Home page</h1>
-    <RouterLink to="/login"
-      ><button class="border px-4 py-3 bg-blue-500">
-        Go Login
-      </button></RouterLink
+    <RouterLink to="/login" class="border px-4 py-3 bg-blue-500">
+      Go Login
+    </RouterLink>
+    <RouterLink to="/d" class="border px-4 py-3 bg-orange-400"
+      >Go Dashboard</RouterLink
     >
   </div>
 </template>
-<script setup></script>
+<script setup>
+// const isAuthenticated =
+//   localStorage.getItem("isAuthenticated") === "true";
+//   v-show="!isAuthenticated"
+</script>
 <style></style>

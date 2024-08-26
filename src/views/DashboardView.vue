@@ -8,5 +8,13 @@
     >
   </div>
 </template>
-<script setup></script>
+<script setup>
+import axios from "axios";
+import { onMounted } from "vue";
+onMounted(async () => {
+  const res = await axios
+    .get("http://localhost:7000/api/event", { withCredentials: true })
+    .then((res) => console.log(res.data));
+});
+</script>
 <style></style>
