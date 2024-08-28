@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import Loading from "../components/Loading.vue";
-const username = ref("");
+const identifier = ref("");
 const password = ref("");
 const router = useRouter();
 // Javob uchun ref
@@ -23,7 +23,7 @@ const fetchApi = async () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          username: username.value,
+          identifier: identifier.value,
           password: password.value,
         }),
         credentials: "include",
@@ -45,7 +45,7 @@ const fetchApi = async () => {
 
 // Formani yuborish uchun funksiya
 const onSubmit = async () => {
-  if (username.value && password.value) {
+  if (identifier.value && password.value) {
     await fetchApi();
   }
 };
@@ -72,15 +72,14 @@ const onSubmit = async () => {
         Hey, you are welcome!
       </h1>
       <div class="space-y-2">
-        <!-- username -->
+        <!-- identifier -->
         <label class="flex flex-col">
-          Username
+          Username or Email
           <input
-            type="text"
-            name="username"
-            v-model="username"
-            id="username"
-            autocomplete="off"
+            type="email"
+            name="identifier"
+            v-model="identifier"
+            id="identifier"
             class="border px-3 py-2"
             placeholder="Username" />
         </label>
@@ -92,13 +91,12 @@ const onSubmit = async () => {
             type="password"
             name="password"
             v-model="password"
-            id="password"
+            autocomplete="current-password" 
             class="border px-3 py-2"
             placeholder="Password" />
         </label>
       </div>
       <span class="text-red-700 text-sm py-1" v-show="isError">{{
-        // (response.message) ? response.message : response.message[0].msg;
         response.message
       }}</span>
 
