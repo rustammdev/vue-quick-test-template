@@ -1,7 +1,7 @@
 <template>
   <div class="flex min-h-screen justify-center items-center gap-4">
     <h1>Home page</h1>
-    <div>
+    <div class="flex flex-col sm:flex-row">
       <RouterLink
         to="/auth/login"
         class="border px-4 py-3 bg-blue-500">
