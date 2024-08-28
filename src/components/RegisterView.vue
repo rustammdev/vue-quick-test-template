@@ -133,7 +133,7 @@ watch([email, password, name], () => {
         <div class="mt-3 flex justify-center items-center gap-1">
           <span class="text-sm">Alredy have a account?</span>
           <RouterLink
-            to="/login"
+            to="/auth/login"
             class="text-sm font-bold tracking-tight text-sky-700">
             Login
           </RouterLink>
