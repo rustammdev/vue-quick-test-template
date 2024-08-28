@@ -103,14 +103,14 @@ watch([email, password], () => {
     </div>
 
     <button
-      class="border w-full rounded-lg px-3 py-2 bg-slate-900 text-white hover:bg-slate-800 flex justify-center items-center mt-4 tracking-wide lg:text-md"
+      class="border w-full rounded-lg px-3 py-2 bg-slate-900 text-white hover:bg-slate-800 flex justify-center items-center md:mt-4 tracking-wide lg:text-md"
       type="button"
       @click="onSubmit"
       :disabled="loading || btnDisable">
       <Loading v-show="loading" />
       <span v-show="!loading" class="font-medium">Sign In</span>
     </button>
-    <div class="m-5 flex justify-center items-center gap-1">
+    <div class="mt-2 md:mt-4 flex justify-center items-center gap-1">
       <span class="text-md md:text-[16px]"
         >Don't have an account ?</span
       >

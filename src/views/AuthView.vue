@@ -15,8 +15,8 @@
   </div>
 </template>
 <script setup>
-import LoginForm from "../components/LoginView.vue";
-import RegisterForm from "../components/RegisterView.vue";
+import LoginForm from "../components/Login.vue";
+import RegisterForm from "../components/Register.vue";
 import { computed } from "vue";
 import { useRoute } from "vue-router";
 const route = useRoute();

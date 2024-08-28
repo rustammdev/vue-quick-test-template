@@ -3,7 +3,7 @@
 </template>
 <script setup>
 import LogOut from "../components/LogOut.vue";
-import TestView from "../components/TestView.vue";
+import TestView from "../components/Dasboard.vue";
 
 import axios from "axios";
 import { onMounted } from "vue";

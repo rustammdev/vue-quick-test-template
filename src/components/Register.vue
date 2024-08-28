@@ -70,29 +70,35 @@ watch([email, password, name], () => {
 </script>
 
 <template>
-  <div
-    class="min-h-screen flex flex-col justify-center items-center gap-2">
-    <div class="container">
+  <div class="container">
+    <form class="w-[90%] p-5 sm:w-[450px] m-auto shadow-xl">
       <h1
-        class="text-2xl md:text-4xl font-semibold tracking-wide text-center my-3">
+        class="text-3xl md:text-4xl font-semibold tracking-wide text-center my-3">
         Create account
       </h1>
-      <form class="w-full p-5 space-y-2">
+      <h1 class="text-center sm:text-lg mb-4 lg:hidden px-2">
+        Revolutionize Your Event with AI-Powered Q&A
+      </h1>
+      <div class="space-y-3">
         <!-- name -->
-        <label class="flex flex-col">
-          Firsname
+        <label class="flex flex-col lg:font-normal">
+          <span class="text-[16px] lg:text-lg font-normal"
+            >Firsname</span
+          >
           <input
             type="text"
             name="firstname"
             v-model="name"
             autocomplete="firstname"
-            class="border px-3 py-2"
+            class="border px-3 py-2 rounded-lg"
             placeholder="Firsname" />
         </label>
 
         <!-- email -->
         <label class="flex flex-col">
-          Email
+          <span class="text-[16px] lg:text-lg font-normal"
+            >Email</span
+          >
           <input
             type="text"
             name="email"
@@ -100,45 +106,49 @@ watch([email, password, name], () => {
             v-model="email"
             autocomplete="email"
             :class="{ 'border-red-400': isEmailnameValid }"
-            class="border px-3 py-2"
+            class="border px-3 py-2 rounded-lg"
             placeholder="Email" />
         </label>
 
         <!-- password -->
         <label class="flex flex-col">
-          Password
+          <span class="text-[16px] lg:text-lg font-normal"
+            >Password</span
+          >
           <input
             type="password"
             name="password"
             id="password"
             autocomplete="current-password"
             v-model="password"
-            class="border px-3 py-2"
+            class="border px-3 py-2 rounded-lg"
             placeholder="Password" />
         </label>
-        <div class="mt-1 h-6">
-          <span class="text-red-700 text-sm py-1" v-show="isError">{{
-            response.message
-          }}</span>
-        </div>
+      </div>
+      <div class="mt-1 h-6">
+        <span class="text-red-700 text-sm py-1" v-show="isError">{{
+          response.message
+        }}</span>
+      </div>
 
-        <button
-          class="border w-full rounded-lg px-3 py-2 bg-slate-900 text-white hover:bg-slate-800 flex justify-center items-center tracking-wide"
-          type="button"
-          @click="onSubmit"
-          :disabled="loading || btnDisable">
-          <LoadingVue v-show="loading" />
-          <span v-show="!loading">Sign Up</span>
-        </button>
-        <div class="mt-3 flex justify-center items-center gap-1">
-          <span class="text-sm">Alredy have a account?</span>
-          <RouterLink
-            to="/auth/login"
-            class="text-sm font-bold tracking-tight text-sky-700">
-            Login
-          </RouterLink>
-        </div>
-      </form>
-    </div>
+      <button
+        class="border w-full rounded-lg px-3 py-2 bg-slate-900 text-white hover:bg-slate-800 flex justify-center items-center mt-4 tracking-wide lg:text-md"
+        type="button"
+        @click="onSubmit"
+        :disabled="loading || btnDisable">
+        <LoadingVue v-show="loading" />
+        <span v-show="!loading" class="font-medium">Sign Up</span>
+      </button>
+      <div class="m-5 flex justify-center items-center gap-1">
+        <span class="text-md md:text-[16px]"
+          >Alredy have a account?</span
+        >
+        <RouterLink
+          to="/auth/login"
+          class="text-md md:text-lg font-bold tracking-tight text-sky-700">
+          Login
+        </RouterLink>
+      </div>
+    </form>
   </div>
 </template>

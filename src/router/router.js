@@ -1,8 +1,6 @@
 import { createWebHistory, createRouter } from "vue-router";
 
 import HomeView from "../views/HomeView.vue";
-import LoginView from "../components/LoginView.vue";
-import RegisterView from "../components/RegisterView.vue";
 import AuthView from "../views/AuthView.vue";
 import DashboardView from "../views/DashboardView.vue";
 import NotFonundView from "../views/NotFoundView.vue";
@@ -37,17 +35,15 @@ const auth = async (to, from, next) => {
 
 const routes = [
   { path: "/", name: "Home", component: HomeView },
-  // { path: "/login", name: "Login", component: LoginView },
-  // { path: "/register", name: "Register", component: RegisterView },
   {
     path: "/auth/login",
     name: "login",
-    component: AuthView, // Auth komponentini ko'rsatadi
+    component: AuthView,
   },
   {
     path: "/auth/register",
     name: "register",
-    component: AuthView, // Auth komponentini ko'rsatadi
+    component: AuthView,
   },
   {
     path: "/d",

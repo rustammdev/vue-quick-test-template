@@ -78,6 +78,6 @@
 </template>
 
 <script setup>
-import SidebarView from "../components/SideBar.vue";
+import SidebarView from "./SideBar.vue";
 </script>
 <style></style>
