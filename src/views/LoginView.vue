@@ -81,6 +81,7 @@ const onSubmit = async () => {
             v-model="identifier"
             id="identifier"
             class="border px-3 py-2"
+            autocomplete="username"
             placeholder="Username" />
         </label>
 
@@ -91,7 +92,7 @@ const onSubmit = async () => {
             type="password"
             name="password"
             v-model="password"
-            autocomplete="current-password" 
+            autocomplete="current-password"
             class="border px-3 py-2"
             placeholder="Password" />
         </label>

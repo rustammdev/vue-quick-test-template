@@ -17,28 +17,14 @@
       class="border-2 text-slate-800 px-6 rounded-lg py-4 flex flex-col w-[350px] gap-y-3">
       <!-- name -->
       <label class="flex flex-col">
-        Fullname
+        Firstname
         <input
           type="text"
-          name="fullname"
-          id="fullname"
+          name="firstname"
           v-model="name"
-          autocomplete="off"
+          autocomplete="firstname"
           class="border px-3 py-2"
-          placeholder="Name" />
-      </label>
-
-      <!-- username -->
-      <label class="flex flex-col">
-        Username
-        <input
-          type="text"
-          name="username"
-          id="username"
-          v-model="username"
-          autocomplete="off"
-          class="border px-3 py-2"
-          placeholder="Username" />
+          placeholder="firstname" />
       </label>
 
       <!-- email -->
@@ -49,7 +35,8 @@
           name="email"
           id="email"
           v-model="email"
-          autocomplete="off"
+          autocomplete="email"
+          :class="{ 'border-red-400': isEmailnameValid }"
           class="border px-3 py-2"
           placeholder="Email" />
       </label>
@@ -61,6 +48,7 @@
           type="password"
           name="password"
           id="password"
+          autocomplete="current-password"
           v-model="password"
           class="border px-3 py-2"
           placeholder="Password" />
@@ -78,7 +66,6 @@
         <span v-show="!loading">Sign un</span>
       </button>
     </form>
-
   </div>
 </template>
 <script setup>
@@ -87,19 +74,25 @@ import { useRouter } from "vue-router";
 import LoadingVue from "../components/Loading.vue";
 
 const name = ref("");
-const username = ref("");
 const password = ref("");
 const email = ref("");
+const isEmailnameValid = ref(false);
 // loader uchun
 const loading = ref(false);
 const isError = ref(false);
 const response = ref({});
 const router = useRouter();
 
-// Token mavjud bo'lsa, dashboardga yo'naltirish
+// Redirect /verify
+const moveToVerify = (param) => {
+  param == "success"
+    ? router.push("/verify")
+    : (isError.value = true);
+};
 
 // API dan ma'lumot olish uchun funksiya
 const fetchApi = async () => {
+  isEmailnameValid.value = false;
   try {
     loading.value = true;
     const responseData = await fetch(
@@ -110,8 +103,7 @@ const fetchApi = async () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          fullname: name.value,
-          username: username.value,
+          firstname: name.value,
           email: email.value,
           password: password.value,
         }),
@@ -119,12 +111,9 @@ const fetchApi = async () => {
       }
     );
     response.value = await responseData.json();
+    response.value.email ? (isEmailnameValid.value = true) : "";
 
-    if (response.value.status == "success") {
-      router.push("/verify");
-    } else {
-      isError.value = true;
-    }
+    moveToVerify(response.value.status);
   } catch (error) {
     response.value = { error: error.message };
   } finally {
@@ -135,4 +124,3 @@ const onSubmit = async () => {
   await fetchApi();
 };
 </script>
-<style></style>
