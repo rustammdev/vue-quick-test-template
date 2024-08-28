@@ -49,14 +49,14 @@ const onSubmit = async () => {
   <div class="flex justify-center items-center min-h-screen">
     <form class="border bg-slate-300 px-3 py-4 rounded-sm max-w-min">
       <!-- username -->
-      <label class="flex flex-col text-center">
+      <label class="flex flex-col text-center gap-2">
         Verify email.
         <input
           type="text"
           name="verify"
           v-model="verify"
           autocomplete="off"
-          class="border px-3 py-2" />
+          class="border px-3 py-2 text-center" />
       </label>
       <button
         class="border w-full px-3 py-2 bg-slate-900 text-white hover:bg-slate-800 rounded-sm flex justify-center items-center mt-3"
