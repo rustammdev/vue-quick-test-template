@@ -10,7 +10,7 @@
           </div>
         </div>
         <h2
-          class="text-center font-bold text-3xl tracking-tight bg-gradient-to-b from-black to-[#001E80] text-transparent bg-clip-text mt-5">
+          class="text-center font-bold text-3xl md:text-[50px] md:leading-[60px] tracking-tight bg-gradient-to-b from-black to-[#001E80] text-transparent bg-clip-text mt-5 w-[80%] mx-auto lg:w-full">
           Simplify the Complex, Answer with Precision
         </h2>
         <p
