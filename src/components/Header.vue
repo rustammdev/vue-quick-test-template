@@ -2,7 +2,7 @@
 import ArrowIcon from "../assets/ArrowRIght.vue";
 </script>
 <template>
-  <header class="sticky top-0 backdrop-blur-sm">
+  <header class="sticky top-0 backdrop-blur-sm z-50">
     <div
       class="flex justify-center items-center bg-black py-3 text-white gap-3">
       <p class="text-white/60 hidden md:block">
@@ -15,8 +15,8 @@ import ArrowIcon from "../assets/ArrowRIght.vue";
       </div>
     </div>
 
-    <div class="p-5">
-      <div class="container border-2">
+    <div class="p-5 max-w-screen-xl mx-auto">
+      <div class="">
         <div class="flex justify-between items-center">
           <img
             src="../assets/logosaas.png"

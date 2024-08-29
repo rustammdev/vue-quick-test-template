@@ -1,6 +1,6 @@
 // tailwind.config.js
 module.exports = {
-  purge: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
+  content: ["./src/**/*.html", "./src/**/*.vue", "./src/**/*.jsx"],
   theme: {
     extend: {
       backgroundImage: {
@@ -10,9 +10,5 @@ module.exports = {
   },
   variants: {
     extend: {},
-  },
-  plugins: [
-    require("@tailwindcss/typography"),
-    // ...
-  ],
+  }
 };
