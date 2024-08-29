@@ -11,12 +11,13 @@
         </div>
         <h2
           class="text-center font-bold text-3xl tracking-tight bg-gradient-to-b from-black to-[#001E80] text-transparent bg-clip-text mt-5">
-          A more effective way to track progress
+          Simplify the Complex, Answer with Precision
         </h2>
         <p
           class="text-center text-[18px]led leading-[22px] tracking-tight text-[#010D3E] mt-4 md:w-[80%] md:mx-auto font-medium">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Nemo obcaecati aliquid modi?
+          Our AI platform intelligently analyzes and segments
+          questions into meaningful parts, significantly reducing the
+          time needed to provide accurate and comprehensive answers.
         </p>
         <div class="relative">
           <img
