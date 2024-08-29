@@ -4,6 +4,7 @@ import HomeView from "../views/HomeView.vue";
 import AuthView from "../views/AuthView.vue";
 import DashboardView from "../views/DashboardView.vue";
 import NotFonundView from "../views/NotFoundView.vue";
+import VerifySend from "../views/VerifySend.vue";
 import VerifyEmail from "../views/VerifyEmail.vue";
 import axios from "axios";
 
@@ -15,18 +16,20 @@ const auth = async (to, from, next) => {
         withCredentials: true,
       })
       .then((response) => {
+        console.log(response);
+
         if (response.data.authenticated) {
           localStorage.setItem("isAuthenticated", "true");
           next();
         } else {
           localStorage.removeItem("isAuthenticated");
-          next({ name: "Home" });
+          next({ name: "login" });
         }
       })
 
       .catch(() => {
         localStorage.removeItem("isAuthenticated");
-        next({ name: "Home" });
+        next({ name: "login" });
       });
   } else {
     next();
@@ -51,10 +54,21 @@ const routes = [
     component: DashboardView,
     beforeEnter: auth,
   },
-  { path: "/verify", name: "Verify", component: VerifyEmail },
+  {
+    path: "/verify/:token",
+    name: "VerifyEmail",
+    component: VerifyEmail,
+    props: true,
+  },
+  {
+    path: "/verify",
+    name: "Verify",
+    component: VerifySend,
+    props: true,
+  },
 
   // mavjud bo'lmagan route
-  { path: "/:pathMatch(.*)*", component: NotFonundView },
+  // { path: "/:pathMatch(.*)*", component: NotFonundView },
 ];
 
 const router = createRouter({

@@ -1,72 +1,62 @@
+<template>
+  <div>
+    <h1>Verify Your Email</h1>
+    <p v-if="loading">Loading...</p>
+    <p v-else-if="verificationStatus === 'success'">
+      Verification successful!
+    </p>
+    <p v-else-if="verificationStatus === 'error'">
+      Verification failed. Please try again later.
+    </p>
+  </div>
+</template>
+
 <script setup>
-import { ref } from "vue";
-import LoadingVue from "../components/Loading.vue";
-import { useRouter } from "vue-router";
+import { ref, onMounted } from "vue";
+import { useRouter, useRoute } from "vue-router";
 
-const verify = ref();
-const response = ref({});
-const loading = ref(false);
 const router = useRouter();
+const route = useRoute();
+const token = route.params.token;
+const loading = ref(true);
+const verificationStatus = ref(null);
+const response = ref({});
+const isVerify = localStorage.getItem("isVerify");
+if (isVerify) {
+  router.push("/d");
+}
 
-const fetchApi = async () => {
+onMounted(async () => {
   try {
-    loading.value = true;
-    const responseData = await fetch(
-      "http://localhost:7000/api/verify",
+    const res = await fetch(
+      `http://localhost:7000/api/verify/${token}`,
       {
-        method: "POST",
+        method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          verify: verify.value,
-        }),
         credentials: "include",
       }
     );
-    
-    response.value = await responseData.json();
-    console.log(response.value);
 
-    if (response.value.status == "success") {
+    response.value = await res.json();
+    if (response.value.status === "success") {
+      localStorage.setItem("isVerify", true);
+      verificationStatus.value = "success";
       router.push("/d");
-      console.log(response.value);
+    } else {
+      verificationStatus.value = "error";
     }
   } catch (error) {
-    response.value = { error: error.message };
+    verificationStatus.value = "error";
+    console.error("Verification error:", error);
   } finally {
     loading.value = false;
+    console.log(response.value);
   }
-};
-
-const onSubmit = async () => {
-  await fetchApi();
-  console.log(verify.value);
-};
+});
 </script>
 
-<template>
-  <div class="flex justify-center items-center min-h-screen">
-    <form class="border bg-slate-300 px-3 py-4 rounded-sm max-w-min">
-      <!-- username -->
-      <label class="flex flex-col text-center gap-2">
-        Verify email.
-        <input
-          type="text"
-          name="verify"
-          v-model="verify"
-          autocomplete="off"
-          class="border px-3 py-2 text-center" />
-      </label>
-      <button
-        class="border w-full px-3 py-2 bg-slate-900 text-white hover:bg-slate-800 rounded-sm flex justify-center items-center mt-3"
-        type="button"
-        @click="onSubmit">
-        <!-- Button bosilganda submit -->
-        <LoadingVue v-show="loading" />
-
-        <span v-show="!loading">Verify</span>
-      </button>
-    </form>
-  </div>
-</template>
+<style scoped>
+/* Qo'shimcha stil qo'shing */
+</style>
