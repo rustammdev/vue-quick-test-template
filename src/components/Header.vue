@@ -16,7 +16,7 @@ import ArrowIcon from "../assets/ArrowRIght.vue";
     </div>
 
     <div class="p-5">
-      <div class="container">
+      <div class="container border-2">
         <div class="flex justify-between items-center">
           <img
             src="../assets/logosaas.png"
