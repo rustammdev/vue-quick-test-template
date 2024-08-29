@@ -4,7 +4,7 @@ import ArrawRight from "../assets/ArrowRIght.vue";
 
 <template>
   <section class="pt-8 pb-20 bg-gradient">
-    <div class="max-w-screen-xl mx-auto min-lg:overflow-hidden">
+    <div class="max-w-screen-xl mx-auto overflow-hidden">
       <div class="md:flex md:items-center min-lg:px-4">
         <div class="md:w-[70%] lg:w-[50%] p-2 md:px-6">
           <div class="flex justify-center md:justify-start">
