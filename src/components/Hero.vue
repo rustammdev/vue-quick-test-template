@@ -3,8 +3,8 @@ import ArrawRight from "../assets/ArrowRIght.vue";
 </script>
 
 <template>
-  <section class="pt-8 pb-20 bg-gradient">
-    <div class="max-w-screen-xl mx-auto overflow-hidden">
+  <section class="pt-8 pb-20 bg-gradient overflow-x-clip">
+    <div class="max-w-screen-xl mx-auto">
       <div class="md:flex md:items-center min-lg:px-4">
         <div class="md:w-[70%] lg:w-[50%] p-2 md:px-6">
           <div class="flex justify-center md:justify-start">
@@ -44,6 +44,16 @@ import ArrawRight from "../assets/ArrowRIght.vue";
             src="../assets/cog.png"
             alt="Cog img"
             class="md:absolute md:h-full md:max-w-none md:-left-12 lg:left-12 lg:right-0" />
+
+          <img
+            src="../assets/cylinder.png"
+            alt="Clyinder image"
+            class="hidden md:block md:absolute -top-14 -left-24 w-52" />
+
+          <img
+            src="../assets/noodle.png"
+            alt="Noodle pn"
+            class="hidden lg:block absolute top-[584px] -left-[550px] w-60 rotate-12" />
         </div>
       </div>
     </div>

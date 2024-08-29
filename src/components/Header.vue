@@ -15,7 +15,7 @@ import ArrowIcon from "../assets/ArrowRIght.vue";
       </div>
     </div>
 
-    <div class="p-5 max-w-screen-xl mx-auto">
+    <div class="p-4 max-w-screen-xl mx-auto">
       <div class="">
         <div class="flex justify-between items-center">
           <img
@@ -30,13 +30,13 @@ import ArrowIcon from "../assets/ArrowRIght.vue";
 
           <nav
             class="hidden md:flex gap-6 text-black/60 items-center">
-            <a href="#">About</a>
-            <a href="#">Features</a>
-            <a href="#">Updates</a>
-            <a href="#">Pricing</a>
+            <a href="#" class="hover:text-black transition-all font-medium">About</a>
+            <a href="#" class="hover:text-black transition-all font-medium">Features</a>
+            <a href="#" class="hover:text-black transition-all font-medium">Updates</a>
+            <a href="#" class="hover:text-black transition-all font-medium">Pricing</a>
             <button
-              class="bg-black text-white px-4 py-2 font-medium rounded-lg tracking-tight inline-flex items-center justify-center">
-              Get for free
+              class="bg-black hover:bg-slate-900 text-white px-4 py-2 font-medium rounded-lg tracking-tight inline-flex items-center justify-center">
+              Let's find Event
             </button>
           </nav>
         </div>
