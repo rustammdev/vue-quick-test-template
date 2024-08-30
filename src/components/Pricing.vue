@@ -14,7 +14,7 @@
         <div
           v-for="plan in pricing"
           :key="plan.plan"
-          class="p-10 rounded-xl my-8 shadow-current sm:border border-[#F1F1F1]">
+          class="p-10 border shadow-[0_7px_14px_#eaeaea] rounded-xl my-8 sm:border border-[#F1F1F1]">
           <h2 class="text-lg font-bold text-black/70">
             {{ plan.plan }}
           </h2>
@@ -29,8 +29,8 @@
               >/month</span
             >
           </div>
-          <p class="font-normal mt-3">{{ plan.description }}</p>
-          <ul class="flex flex-col gap-4 mt-8">
+          <p class="font-normal mt-2">{{ plan.description }}</p>
+          <ul class="flex flex-col gap-2 mt-6">
             <li
               v-for="feature in plan.features"
               :key="feature"
@@ -48,15 +48,6 @@
           </button>
         </div>
       </div>
-      <!-- <h2>{{ pricing[0].plan }}</h2>
-      <div>
-        <span>{{ pricing[0].description }}</span>
-        <span>/month</span>
-      </div>
-      <button>Let's start</button>
-      <ul v-for="(item, index) in pricing">
-        <li>{{ item }}</li>
-      </ul> -->
     </div>
   </section>
 </template>
@@ -67,6 +58,7 @@ const pricing = [
     price: "$0",
     description: "Get started with basic features.",
     buttonText: "Get started for free",
+    inverse: false,
     features: [
       "Access to basic Q&A features",
       "Limited AI-powered analysis",
@@ -78,6 +70,7 @@ const pricing = [
     plan: "One Time",
     price: "$99",
     description: "One-time payment for extended features.",
+    inverse: false,
     buttonText: "Let's choose lifetime Plan",
     features: [
       "Full access to Q&A features",
@@ -89,6 +82,7 @@ const pricing = [
   {
     plan: "Business",
     price: "$299",
+    inverse: true,
     description: "For businesses that need advanced capabilities.",
     buttonText: "Business Plan",
     features: [
