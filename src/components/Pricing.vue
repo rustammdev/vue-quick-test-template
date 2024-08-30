@@ -12,11 +12,11 @@
       </p>
 
       <div
-        class="flex flex-col items-center lg:flex-row lg:items-end px-10 md:px-0">
+        class="flex flex-col items-center lg:flex-row lg:items-end justify-center px-10 md:px-0">
         <!-- Pricing card -->
         <div
-          v-for="plan in pricing"
-          :key="plan.plan"
+          v-for="(plan, index) in pricing"
+          :key="index"
           :class="
             twMerge(
               'p-10 border shadow-[0_7px_14px_#eaeaea] rounded-3xl my-6 mx-4 sm:border border-[#F1F1F1] max-w-sm w-full',

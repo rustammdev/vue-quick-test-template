@@ -25,7 +25,7 @@ import ArrawRight from "../assets/ArrowRIght.vue";
           <div
             class="flex gap-1 justify-center md:justify-start items-center mt-[30px]">
             <button
-              class="bg-black text-white px-4 py-2 font-medium rounded-lg tracking-tight inline-flex items-center justify-center">
+              class="bg-black hover:bg-black/80 text-white px-4 py-3 md:px-5 md:py-3 font-medium rounded-lg tracking-tight inline-flex items-center justify-center">
               Get for free
             </button>
             <button
@@ -64,7 +64,7 @@ import ArrawRight from "../assets/ArrowRIght.vue";
 .bg-gradient {
   background: radial-gradient(
     ellipse 200% 100% at bottom left,
-    #091a56,
+    #394368,
     #eaeeef
   );
 }
