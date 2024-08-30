@@ -24,8 +24,8 @@ const features = [
 </script>
 
 <template>
-  <section class="pt-24 pb-[100px] gradient">
-    <div class="container mx-auto   lg:px-0">
+  <section class="pt-24 px-4 pb-[100px] gradient">
+    <div class="md:container mx-auto lg:px-0">
       <h2
         class="text-center font-bold text-3xl md:text-[50px] md:leading-[60px] tracking-tight bg-gradient-to-b from-black to-[#001E80] text-transparent bg-clip-text mt-5 w-[80%] mx-auto lg:w-full lg:text-6xl">
         Features
@@ -36,12 +36,11 @@ const features = [
         project.
       </p>
 
-      <div
-        class="grid mb-8 shadow-sm md:mb-12 md:grid-cols-2 mt-10  rounded-lg">
+      <div class="grid md:mb-12 md:grid-cols-2 mt-10 border border-white/20 p-2">
         <figure
           v-for="(feature, index) in features"
           :key="index"
-          class="flex flex-col justify-center items-center text-center bg-white border-b md:border-e p-4 md:p-6 lg:p-8 cursor-pointer">
+          class="flex shadow-sm flex-col justify-center items-center text-center bg-white border-b md:border-e px-6 py-10 md:p-6 lg:p-8 cursor-pointer">
           <blockquote class="max-w-lg lg:max-w-2xl">
             <h3 class="text-lg font-semibold text-gray-900">
               {{ feature.title }}
@@ -57,7 +56,12 @@ const features = [
 </template>
 <style setup>
 .gradient {
-  background: rgb(2,0,36);
-  background: linear-gradient(90deg, rgba(2,0,36,0.6040616930365896) 0%, rgba(9,78,121,0.30154068463322825) 45%, rgba(0,110,255,0.5592437658657212) 100%); 
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 0.6040616930365896) 0%,
+    rgba(9, 78, 121, 0.30154068463322825) 45%,
+    rgba(0, 110, 255, 0.5592437658657212) 100%
+  );
 }
 </style>
