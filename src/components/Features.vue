@@ -3,7 +3,7 @@ const features = [
   {
     title: "Collecting and Filtering Questions",
     description:
-      "Questions are analyzed by AI and grouped by similarities in meaning. In this process, unnecessary words, insults, and repetitive questions are reduced by automatic filtering..",
+      "Questions are analyzed by AI and grouped by similarities in meaning. In this process, unnecessary words, insults, and repetitive questions are reduced by automatic filtering.",
   },
   {
     title: "Event Management",
@@ -24,8 +24,8 @@ const features = [
 </script>
 
 <template>
-  <section class="pt-24 pb-20">
-    <div class="container mx-auto max-w-6xl px-6 lg:px-0">
+  <section class="pt-24 pb-[100px] gradient">
+    <div class="container mx-auto   lg:px-0">
       <h2
         class="text-center font-bold text-3xl md:text-[50px] md:leading-[60px] tracking-tight bg-gradient-to-b from-black to-[#001E80] text-transparent bg-clip-text mt-5 w-[80%] mx-auto lg:w-full lg:text-6xl">
         Features
@@ -37,16 +37,16 @@ const features = [
       </p>
 
       <div
-        class="grid mb-8 border border-gray-200 rounded-lg shadow-sm md:mb-12 md:grid-cols-2 mt-10">
+        class="grid mb-8 shadow-sm md:mb-12 md:grid-cols-2 mt-10  rounded-lg">
         <figure
           v-for="(feature, index) in features"
           :key="index"
-          class="flex flex-col justify-start text-center bg-white border-b md:border-e p-4 md:p-6 lg:p-8 cursor-pointer">
-          <blockquote class="max-w-2xl">
+          class="flex flex-col justify-center items-center text-center bg-white border-b md:border-e p-4 md:p-6 lg:p-8 cursor-pointer">
+          <blockquote class="max-w-lg lg:max-w-2xl">
             <h3 class="text-lg font-semibold text-gray-900">
               {{ feature.title }}
             </h3>
-            <p class="mt-2 lg:text-[18px]">
+            <p class="mt-2 lg:text-[16px]">
               {{ feature.description }}
             </p>
           </blockquote>
@@ -55,4 +55,9 @@ const features = [
     </div>
   </section>
 </template>
-<style></style>
+<style setup>
+.gradient {
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,0.6040616930365896) 0%, rgba(9,78,121,0.30154068463322825) 45%, rgba(0,110,255,0.5592437658657212) 100%); 
+}
+</style>
