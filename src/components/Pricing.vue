@@ -47,7 +47,7 @@
                   plan.active && 'text-white/50'
                 )
               "
-              >/month</span
+              >{{ plan.onece ? "/once" : "/month" }}</span
             >
           </div>
           <p class="font-normal mt-4">
@@ -94,19 +94,22 @@ const pricing = [
     features: [
       "Access to basic Q&A features",
       "Limited AI-powered analysis",
+      "1 event per month",
       "Email support",
       "Community access",
     ],
   },
   {
     plan: "One Time",
-    price: "$99",
+    price: "$5",
+    onece: true,
     description: "One-time payment for extended features.",
     active: false,
     popular: false,
     buttonText: "Let's choose life time Plan",
     features: [
       "Full access to Q&A features",
+      "Create a one-time event",
       "Advanced AI-powered analysis",
       "Priority email support",
       "Event customization options",
@@ -121,6 +124,7 @@ const pricing = [
     buttonText: "Business Plan",
     features: [
       "Unlimited Q&A sessions",
+      "Create unlimited events",
       "Real-time AI-powered analysis",
       "Dedicated account manager",
       "24/7 priority support",
