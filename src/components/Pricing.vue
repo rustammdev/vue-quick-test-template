@@ -1,5 +1,5 @@
 <template>
-  <section class="py-24 ">
+  <section class="py-24">
     <div class="container mx-auto">
       <h2
         class="text-center font-bold text-3xl md:text-[50px] md:leading-[60px] tracking-tight bg-gradient-to-b from-black to-[#001E80] text-transparent bg-clip-text mt-5 w-[80%] mx-auto lg:w-full">
@@ -10,11 +10,11 @@
         Freee forever. Upgrade for unlimited tasks, better sucurity,
         and excluciv feature.
       </p>
-      <div class="py-8">
+      <div class="py-8 flex flex-col">
         <div
           v-for="plan in pricing"
           :key="plan.plan"
-          class="p-10 rounded-xl shadow-[0_7px_5px_#EAEAEA] border border-[#F1F1F1]">
+          class="p-10 rounded-xl my-8 shadow-current sm:border border-[#F1F1F1]">
           <h2 class="text-lg font-bold text-black/70">
             {{ plan.plan }}
           </h2>
