@@ -104,7 +104,7 @@ const pricing = [
     description: "One-time payment for extended features.",
     active: false,
     popular: false,
-    buttonText: "Let's choose lifetime Plan",
+    buttonText: "Let's choose life time Plan",
     features: [
       "Full access to Q&A features",
       "Advanced AI-powered analysis",
