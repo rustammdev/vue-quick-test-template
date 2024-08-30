@@ -14,8 +14,21 @@
         <div
           v-for="plan in pricing"
           :key="plan.plan"
-          class="p-10 border shadow-[0_7px_14px_#eaeaea] rounded-xl my-8 sm:border border-[#F1F1F1]">
-          <h2 class="text-lg font-bold text-black/70">
+          :class="
+            twMerge(
+              'p-10 border shadow-[0_7px_14px_#eaeaea] rounded-xl my-8 mx-4 sm:border border-[#F1F1F1]',
+              plan.inverse === true && 'bg-black text-white'
+            )
+          ">
+          <h2
+            :class="
+              twMerge(
+                'text-xl py-1 font-bold text-black/70 mb-4',
+                plan.inverse && 'text-white/50',
+                plan.popular &&
+                  'bg-gradient-to-b from-[#b921bc] via-[#bed76d] to-[#2caaee] text-transparent bg-clip-text'
+              )
+            ">
             {{ plan.plan }}
           </h2>
           <div>
@@ -25,7 +38,12 @@
             >
             <span
               v-if="plan.plan !== 'Free'"
-              class="tracking-tight font-bold text-black/50"
+              :class="
+                twMerge(
+                  'tracking-tight font-bold text-black/50',
+                  plan.inverse && 'text-white/50'
+                )
+              "
               >/month</span
             >
           </div>
@@ -35,14 +53,18 @@
               v-for="feature in plan.features"
               :key="feature"
               class="text-sm font-normal flex items-center gap-2">
-              <img
-                src="../assets/check.svg"
-                alt="Check image"
-                class="h-6 w-6" />{{ feature }}
+              <CheckSvg class="h-6 w-6" color="text-white" />
+              {{ feature }}
             </li>
           </ul>
           <button
-            class="bg-black hover:bg-black/80 w-full text-white px-4 py-2 font-medium rounded-lg tracking-tight inline-flex items-center justify-center mt-[30px]"
+            :class="
+              twMerge(
+                'bg-black hover:bg-black/80 w-full text-white px-4 py-2 font-medium rounded-lg tracking-tight inline-flex items-center justify-center mt-[30px]',
+                plan.inverse === true &&
+                  'bg-white text-black hover:bg-slate-700'
+              )
+            "
             :disabled="plan.plan === 'Free'">
             {{ plan.buttonText }}
           </button>
@@ -52,12 +74,16 @@
   </section>
 </template>
 <script setup>
+import { twMerge } from "tailwind-merge";
+import CheckSvg from "../assets/check-svg.vue";
+
 const pricing = [
   {
     plan: "Free",
     price: "$0",
     description: "Get started with basic features.",
     buttonText: "Get started for free",
+    popular: false,
     inverse: false,
     features: [
       "Access to basic Q&A features",
@@ -71,6 +97,7 @@ const pricing = [
     price: "$99",
     description: "One-time payment for extended features.",
     inverse: false,
+    popular: false,
     buttonText: "Let's choose lifetime Plan",
     features: [
       "Full access to Q&A features",
@@ -83,6 +110,7 @@ const pricing = [
     plan: "Business",
     price: "$299",
     inverse: true,
+    popular: true,
     description: "For businesses that need advanced capabilities.",
     buttonText: "Business Plan",
     features: [
@@ -95,3 +123,18 @@ const pricing = [
   },
 ];
 </script>
+
+<style>
+.text-gradient {
+  background: #ac3bcf;
+  background: linear-gradient(
+    to right,
+    #ac3bcf 0%,
+    #7bff77 50%,
+    #cf1512 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+</style>
