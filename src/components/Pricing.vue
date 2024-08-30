@@ -12,7 +12,7 @@
       </p>
 
       <div
-        class="flex flex-col items-center lg:flex-row lg:items-end">
+        class="flex flex-col items-center lg:flex-row lg:items-end px-10 md:px-0">
         <!-- Pricing card -->
         <div
           v-for="plan in pricing"
