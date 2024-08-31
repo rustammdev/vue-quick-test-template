@@ -1,22 +1,33 @@
 <script setup>
+import {
+  SlidersHorizontal,
+  CalendarCheck,
+  Repeat2,
+  SendHorizontal,
+} from "lucide-vue-next";
+
 const features = [
   {
     title: "Collecting and Filtering Questions",
+    img: SlidersHorizontal,
     description:
       "Questions are analyzed by AI and grouped by similarities in meaning. In this process, unnecessary words, insults, and repetitive questions are reduced by automatic filtering.",
   },
   {
     title: "Event Management",
+    img: CalendarCheck,
     description:
       "Users can add other users as moderators to events they create. Moderators can view questions posted to events. It is possible to view questions submitted to a single event from multiple devices.",
   },
   {
     title: "Filtering abusive  and repeated questions",
+    img: Repeat2,
     description:
       "The project has a mechanism for automatically filtering offensive expressions and similar questions, which significantly reduces the time of viewing and answering questions.",
   },
   {
     title: "Send questions",
+    img: SendHorizontal,
     description:
       "You do not need to register to post questions. However, unregistered users will not be able to contact event creators.",
   },
@@ -44,6 +55,9 @@ const features = [
           v-for="(feature, index) in features"
           :key="index"
           class="relative bg-white p-6 max-w-xs flex-none w-full md:w-1/2 rounded-lg">
+          <div class="flex justify-center items-center mb-4 mt-2">
+            <component :is="feature.img"></component>
+          </div>
           <h3 class="font-medium text-lg mb-2 text-center">
             {{ feature.title }}
           </h3>
