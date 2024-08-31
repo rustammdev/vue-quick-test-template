@@ -13,7 +13,6 @@
 
       <div
         class="flex flex-col items-center lg:flex-row lg:items-end justify-center px-10 md:px-0">
-        <!-- Pricing card -->
         <div
           v-for="(plan, index) in pricing"
           :key="index"
@@ -94,7 +93,7 @@ const pricing = [
     features: [
       "Access to basic Q&A features",
       "Limited AI-powered analysis",
-      "1 event per month",
+      "One event per month",
       "Email support",
       "Community access",
     ],
@@ -117,7 +116,7 @@ const pricing = [
   },
   {
     plan: "Business",
-    price: "$299",
+    price: "$99",
     active: true,
     popular: true,
     description: "For businesses that need advanced capabilities.",

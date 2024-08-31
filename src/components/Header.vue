@@ -30,7 +30,7 @@ import ArrowIcon from "../assets/ArrowRIght.vue";
 
           <nav
             class="hidden md:flex gap-6 text-black/60 items-center">
-            <a href="#" class="hover:text-black transition-all font-medium">About</a>
+            <a href="#about" class="hover:text-black transition-all font-medium">About</a>
             <a href="#" class="hover:text-black transition-all font-medium">Features</a>
             <a href="#" class="hover:text-black transition-all font-medium">Updates</a>
             <a href="#" class="hover:text-black transition-all font-medium">Pricing</a>
