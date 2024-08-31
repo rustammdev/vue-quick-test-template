@@ -32,7 +32,7 @@ const features = [
           Features
         </h2>
         <p
-          class="md:w-full text-[18px] lg:text-[20px] leading-[22px] tracking-tight text-[#010D3E]/80 mt-4 w-[90%] text-center mx-auto font-medium max-w-lg ">
+          class="md:w-full text-[18px] lg:text-[20px] leading-[22px] tracking-tight text-[#010D3E]/80 mt-4 w-[90%] text-center mx-auto font-medium max-w-lg">
           Familiarize yourself with the features and capabilities of
           the project.
         </p>
@@ -44,13 +44,10 @@ const features = [
           v-for="(feature, index) in features"
           :key="index"
           class="relative bg-white p-6 max-w-xs flex-none w-full md:w-1/2 rounded-lg">
-          <!-- <div
-            class="absolute inset-0  rounded-lg flex items-center justify-center"></div> -->
-
-          <h3 class="font-medium text-lg mb-2">
+          <h3 class="font-medium text-lg mb-2 text-center">
             {{ feature.title }}
           </h3>
-          <p class="text-base">
+          <p class="text-base text-center">
             {{ feature.description }}
           </p>
         </blockquote>
