@@ -12,7 +12,7 @@
       </p>
 
       <div
-        class="flex flex-col items-center lg:flex-row lg:items-end justify-center px-10 md:px-0">
+        class="flex flex-col items-center lg:flex-row lg:items-end justify-center px-6 md:px-0">
         <div
           v-for="(plan, index) in pricing"
           :key="index"

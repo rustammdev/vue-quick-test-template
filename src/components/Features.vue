@@ -24,7 +24,7 @@ const features = [
 </script>
 
 <template>
-  <section class="pt-24 px-4 pb-[100px]">
+  <section class="pt-24 px-4 pb-[100px] gradient">
     <div class="md:container mx-auto lg:px-0">
       <div class="flex flex-col justify-start">
         <h2
@@ -32,7 +32,7 @@ const features = [
           Features
         </h2>
         <p
-          class="md:w-full text-[18px] lg:text-[20px] leading-[22px] tracking-tight text-[#010D3E]/80 mt-4 w-[90%] text-center mx-auto font-medium max-w-lg">
+          class="md:w-full text-[18px] lg:text-[20px] leading-[22px] tracking-tight text-[#010D3E]/80 mt-4 w-[90%] text-center mx-auto font-medium max-w-lg ">
           Familiarize yourself with the features and capabilities of
           the project.
         </p>
@@ -43,9 +43,9 @@ const features = [
         <blockquote
           v-for="(feature, index) in features"
           :key="index"
-          class="relative p-6 max-w-xs flex-none w-full md:w-1/2 border border-transparent rounded-lg">
-          <div
-            class="absolute inset-0 border-2 border-gray-300 rounded-lg flex items-center justify-center"></div>
+          class="relative bg-white p-6 max-w-xs flex-none w-full md:w-1/2 rounded-lg">
+          <!-- <div
+            class="absolute inset-0  rounded-lg flex items-center justify-center"></div> -->
 
           <h3 class="font-medium text-lg mb-2">
             {{ feature.title }}
