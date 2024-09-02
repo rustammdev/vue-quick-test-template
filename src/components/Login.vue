@@ -12,6 +12,12 @@ const loading = ref(false);
 const btnDisable = ref(true);
 const isError = ref(true);
 
+// isAuth
+const isVerify = localStorage.getItem("isAuthenticated");
+if (isVerify) {
+  router.push("/d");
+}
+
 // API dan ma'lumot olish uchun funksiya
 const fetchApi = async () => {
   try {

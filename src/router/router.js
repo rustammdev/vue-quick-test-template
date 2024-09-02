@@ -17,8 +17,6 @@ const auth = async (to, from, next) => {
         withCredentials: true,
       })
       .then((response) => {
-        console.log(response);
-
         if (response.data.authenticated) {
           localStorage.setItem("isAuthenticated", "true");
           next();
@@ -29,7 +27,6 @@ const auth = async (to, from, next) => {
       })
 
       .catch(() => {
-        localStorage.removeItem("isAuthenticated");
         next({ name: "login" });
       });
   } else {

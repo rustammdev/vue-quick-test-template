@@ -13,6 +13,12 @@ const isError = ref(false);
 const response = ref({});
 const router = useRouter();
 
+// isAuth
+const isVerify = localStorage.getItem("isAuthenticated");
+if (isVerify) {
+  router.push("/d");
+}
+
 // Redirect /verify
 const moveToVerify = (param) => {
   param == "success"
