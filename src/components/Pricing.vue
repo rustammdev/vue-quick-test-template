@@ -1,5 +1,5 @@
 <template>
-  <section class="py-24">
+  <section class="py-24" id="pricing">
     <div class="container mx-auto">
       <h2
         class="text-center font-bold text-3xl md:text-[50px] md:leading-[60px] tracking-tight bg-gradient-to-b from-black to-[#001E80] text-transparent bg-clip-text mt-5 w-[80%] mx-auto lg:w-full">

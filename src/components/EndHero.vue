@@ -18,10 +18,11 @@
         <br class="hidden md:block" />
         zing providing fast, accurate answers.
       </p>
-      <button
+      <RouterLink
+        to="/auth/register"
         class="bg-black hover:bg-black/80 text-white px-3 py-2 mt-4 font-medium rounded-lg tracking-tight inline-flex items-center justify-center">
         Give it a try
-      </button>
+      </RouterLink>
 
       <div class="relative max-w-6xl w-full">
         <img

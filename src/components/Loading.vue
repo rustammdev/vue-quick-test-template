@@ -16,5 +16,3 @@
     <span class="sr-only">Loading...</span>
   </div>
 </template>
-<script></script>
-<style></style>

@@ -3,7 +3,7 @@ import ArrawRight from "../assets/ArrowRIght.vue";
 </script>
 
 <template>
-  <section class="pt-8 pb-20 bg-gradient overflow-x-clip">
+  <section class="pt-8 pb-20 bg-gradient overflow-x-clip" id="about">
     <div class="max-w-screen-xl mx-auto">
       <div class="md:flex md:items-center min-lg:px-4">
         <div class="md:w-[70%] lg:w-[50%] p-2 md:px-6">
@@ -24,17 +24,20 @@ import ArrawRight from "../assets/ArrowRIght.vue";
           </p>
           <div
             class="flex gap-1 justify-center md:justify-start items-center mt-[30px]">
-            <button
+            <RouterLink
+              to="auth/register"
               class="bg-black hover:bg-black/80 text-white px-3 py-2 font-medium rounded-lg tracking-tight inline-flex items-center justify-center">
               Get for free
-            </button>
-            <button
-              class="flex justify-center items-center gap-1 ml-2">
+            </RouterLink>
+            <RouterLink
+              to="/e"
+              class="flex justify-center items-center gap-1 ml-2 group">
               <span class="font-medium tracking-tight"
-                >Learn more</span
+                >Find event</span
               >
-              <ArrawRight class="h-4 w-4" />
-            </button>
+              <ArrawRight
+                class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-2" />
+            </RouterLink>
           </div>
         </div>
 

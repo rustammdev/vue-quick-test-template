@@ -6,6 +6,7 @@ import DashboardView from "../views/DashboardView.vue";
 import NotFonundView from "../views/NotFoundView.vue";
 import VerifySend from "../views/VerifySend.vue";
 import VerifyEmail from "../views/VerifyEmail.vue";
+import Events from "../views/Events.vue";
 import axios from "axios";
 
 // Dashboard auth check
@@ -66,9 +67,13 @@ const routes = [
     component: VerifySend,
     props: true,
   },
-
+  {
+    path: "/e",
+    name: "Events",
+    component: Events,
+  },
   // mavjud bo'lmagan route
-  // { path: "/:pathMatch(.*)*", component: NotFonundView },
+  { path: "/:pathMatch(.*)*", component: NotFonundView },
 ];
 
 const router = createRouter({

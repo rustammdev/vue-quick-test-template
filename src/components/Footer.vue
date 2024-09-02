@@ -1,5 +1,5 @@
 <template>
-  <footer class="p-4 md:p-8 lg:p-10 bg-gray-950">
+  <footer class="p-6 md:p-8 lg:p-10 bg-gray-950">
     <div class="mx-auto max-w-screen-xl text-center">
       <a
         href="#"
@@ -7,36 +7,29 @@
         QuickAnswear
       </a>
       <p class="my-6 text-gray-500 dark:text-gray-400">
-        Familiarize yourself with the features and capabilities of the project. 
+        Familiarize yourself with the features and capabilities of the
+        project.
       </p>
-      <ul
-        class="flex flex-wrap justify-center items-center mb-6 text-gray-900 dark:text-white">
-        <li>
-          <a href="#" class="mr-4 hover:underline md:mr-6">About</a>
-        </li>
-        <li>
-          <a href="#" class="mr-4 hover:underline md:mr-6">Premium</a>
-        </li>
-        <li>
-          <a href="#" class="mr-4 hover:underline md:mr-6"
-            >Campaigns</a
+      <nav class="text-white/70 mb-2">
+        <div class="flex gap-4 justify-center items-center">
+          <a
+            href="#about"
+            class="hover:text-white transition-all font-medium"
+            >About</a
           >
-        </li>
-        <li>
-          <a href="#" class="mr-4 hover:underline md:mr-6">Blog</a>
-        </li>
-        <li>
-          <a href="#" class="mr-4 hover:underline md:mr-6"
-            >Affiliate Program</a
+          <a
+            href="#features"
+            class="hover:text-white transition-all font-medium"
+            >Features</a
           >
-        </li>
-        <li>
-          <a href="#" class="mr-4 hover:underline md:mr-6">FAQs</a>
-        </li>
-        <li>
-          <a href="#" class="mr-4 hover:underline md:mr-6">Contact</a>
-        </li>
-      </ul>
+
+          <a
+            href="#pricing"
+            class="hover:text-white transition-all font-medium"
+            >Pricing</a
+          >
+        </div>
+      </nav>
       <span
         class="text-sm text-gray-500 sm:text-center dark:text-gray-400"
         >© 2023-2024

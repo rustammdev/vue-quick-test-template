@@ -35,7 +35,7 @@ const features = [
 </script>
 
 <template>
-  <section class="pt-24 px-4 pb-[100px] gradient">
+  <section class="pt-24 px-4 pb-[100px] gradient" id="features">
     <div class="md:container mx-auto lg:px-0">
       <div class="flex flex-col justify-start">
         <h2

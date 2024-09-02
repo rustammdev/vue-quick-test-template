@@ -1,24 +1,48 @@
 <template>
-  <div>
-    <h1>Verify Your Email</h1>
-    <p v-if="loading">Loading...</p>
-    <p v-else-if="verificationStatus === 'success'">
+  <div class="h-screen flex flex-col justify-center items-center">
+    <MailWarning class="m-2" v-if="verificationStatus === 'error'" />
+    <MailCheck v-if="verificationStatus === 'success'" class="m-2" />
+    <MailSearch v-if="loading" class="m-2" />
+
+    <h1 class="font-bold text-2xl">Verify Your Email</h1>
+    <div
+      v-if="loading"
+      class="mt-4 flex flex-col justify-center items-center gap-2">
+      <p>Your email is being verified</p>
+      <LoadingVue />
+    </div>
+    <p
+      v-else-if="verificationStatus === 'success'"
+      class="font-medium mt-4 border border-green-300 px-3 py-4">
       Verification successful!
     </p>
-    <p v-else-if="verificationStatus === 'error'">
-      Verification failed. Please try again later.
-    </p>
+    <div v-else-if="verificationStatus === 'error'">
+      <p class="text-red-700 font-normal mt-2">
+        Verification failed. Please try again later.
+      </p>
+      <button
+        @click="verifyEmail"
+        class="px-4 py-2 rounded-md w-full mt-1 bg-black text-green-400 font-medium">
+        Reset code
+      </button>
+    </div>
   </div>
 </template>
 
 <script setup>
+import { MailWarning } from "lucide-vue-next";
+import { MailSearch } from "lucide-vue-next";
+import { MailCheck } from "lucide-vue-next";
 import { ref, onMounted } from "vue";
 import { useRouter, useRoute } from "vue-router";
+import LoadingVue from "../components/Loading.vue";
 
 const router = useRouter();
 const route = useRoute();
 const token = route.params.token;
-const loading = ref(true);
+console.log(token);
+
+const loading = ref(false);
 const verificationStatus = ref(null);
 const response = ref({});
 const isVerify = localStorage.getItem("isVerify");
@@ -26,8 +50,10 @@ if (isVerify) {
   router.push("/d");
 }
 
-onMounted(async () => {
+const verifyEmail = async () => {
   try {
+    loading.value = true;
+    verificationStatus.value = null;
     const res = await fetch(
       `http://localhost:7000/api/verify/${token}`,
       {
@@ -54,7 +80,8 @@ onMounted(async () => {
     loading.value = false;
     console.log(response.value);
   }
-});
+};
+onMounted(verifyEmail);
 </script>
 
 <style scoped>
