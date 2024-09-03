@@ -21,9 +21,13 @@ if (isVerify) {
 
 // Redirect /verify
 const moveToVerify = (param) => {
-  param == "success"
-    ? router.push("/verify")
-    : (isError.value = true);
+  if (param == "success") {
+    localStorage.setItem("isAuthenticated", true);
+    router.push("/verify");
+  } else {
+    localStorage.setItem("isAuthenticated", false);
+    isError.value = true;
+  }
 };
 
 // API dan ma'lumot olish uchun funksiya

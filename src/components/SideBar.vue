@@ -35,44 +35,24 @@
           <span>Get productive today!</span>
         </p>
 
-        <div class="mt-12">
-          <!-- Tailwind bilan button element -->
-          <!-- <div>
-            <button
-              class="flex flex-col justify-center w-16 h-16 items-center bg-blue-500 text-white rounded-lg shadow-md transition-all hover:outline hover:outline-2 hover:outline-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-300">
-              <i class="fas fa-cog text-2xl"></i>
-            </button>
-            <span class="text-md font-semibold text-black mt-2"
-              >Settings</span
-            >
-          </div> -->
-          <button
-            class="border px-3 py-2 text-slate-900 rounded-sm flex justify-start items-center mt-3 hover:bg-slate-200 hover:transition w-full"
-            type="button">
-            <i class="fas fa-cog text-xl pr-4"></i>
+        <div class="mt-12 flex flex-col">
+          <RouterLink
+            to="/d"
+            class="text-md md:text-lg font-bold tracking-tight text-sky-700">
+            Dashboard
+          </RouterLink>
+          <RouterLink
+            to="/d/s"
+            class="text-md md:text-lg font-bold tracking-tight text-sky-700">
             Settings
-          </button>
+          </RouterLink>
+          <RouterLink
+            to="/d/e"
+            class="text-md md:text-lg font-bold tracking-tight text-sky-700">
+            Events
+          </RouterLink>
         </div>
       </div>
-
-      <!-- Setting Button -->
-      <!-- <div>
-        <div class="p-2 rounded w-full">
-          <button
-            id="CreateEventSidebarButton"
-            class="bg-[#e28743] text-white px-4 py-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-emerald-50">
-            Create Event
-          </button>
-        </div>
-
-        <div class="p-2 rounded">
-          <button
-            id="SendQuestionsButton"
-            class="bg-[#FF5F6D] text-white px-4 py-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-emerald-50">
-            Send questions
-          </button>
-        </div>
-      </div> -->
     </div>
   </div>
 </template>

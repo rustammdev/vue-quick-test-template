@@ -1,9 +1,8 @@
 <template>
-  <TestView />
+  <DashbordComponent />
 </template>
 <script setup>
-import LogOut from "../components/LogOut.vue";
-import TestView from "../components/Dasboard.vue";
+import DashbordComponent from "../components/Dasboard.vue";
 
 import axios from "axios";
 import { onMounted } from "vue";
