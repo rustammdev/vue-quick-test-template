@@ -1,15 +1,17 @@
 <template>
-  <DashbordComponent />
-</template>
-<script setup>
-import DashbordComponent from "../components/Dasboard.vue";
+    <div class="flex h-screen">
+        <SidebarView />
 
-import axios from "axios";
-import { onMounted } from "vue";
-onMounted(async () => {
-  const res = await axios
-    .get("http://localhost:7000/api/event", { withCredentials: true })
-    .then((res) => console.log(res.data));
-});
+        <!-- Main Content -->
+        <div
+            class="flex-1 p-4 sm:px-6 lg:px-12 xl:px-24 h-screen overflow-y-auto bg-[#ffffff] text-black"
+        >
+            <router-view />
+        </div>
+    </div>
+</template>
+
+<script setup>
+import SidebarView from "../components/SideBar.vue";
 </script>
-<style></style>
+<style scoped></style>
