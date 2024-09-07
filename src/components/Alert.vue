@@ -15,13 +15,13 @@ const props = defineProps({
     <div
         :class="
             twMerge(
-                'fixed left-1/2 transform -translate-x-1/2 border transition-transform duration-400 ease-in-out',
+                'fixed left-1/2 transform -translate-x-1/2 transition-transform duration-400 ease-in-out',
                 isError || message ? 'error' : 'top-[-100%]', // Default holatda yuqorida ko'rsatish
             )
         "
     >
         <div
-            class="flex items-center p-4 mb-4 w-fit text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+            class="flex items-center p-4 mb-4 text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
         >
             <svg
                 class="flex-shrink-0 w-4 h-4"

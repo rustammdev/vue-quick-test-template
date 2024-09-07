@@ -10,17 +10,19 @@ import Events from "../views/Events.vue";
 import DashboardEvents from "../components/events/DashboardEvents.vue";
 import SendQuestions from "../components/events/SendQuestion.vue";
 import DashboardSettings from "../components/Settings.vue";
-import axios from "axios";
 
 const auth = async (to, from, next) => {
   if (to.name === "Dashboard") {
-    console.log("ishladi");
-    await axios
-      .get("http://localhost:7000/api/auth/check", {
-        withCredentials: true,
-      })
-      .then((response) => {
-        if (response.data.authenticated) {
+    const res = await fetch("http://localhost:7000/api/auth/check", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.authenticated) {
           localStorage.setItem("isAuthenticated", "true");
           next();
         } else {
@@ -28,7 +30,6 @@ const auth = async (to, from, next) => {
           next({ name: "login" });
         }
       })
-
       .catch(() => {
         next({ name: "login" });
       });

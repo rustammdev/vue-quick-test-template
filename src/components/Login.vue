@@ -37,7 +37,7 @@ const fetchApi = async () => {
 
         if (response.value.status == "success") {
             localStorage.setItem("isAuthenticated", true);
-            router.push("/d");
+            router.push("/dashboard");
         } else {
             localStorage.setItem("isAuthenticated", false);
             isError.value = true;
