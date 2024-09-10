@@ -37,9 +37,15 @@ const fetchApi = async () => {
 
         if (response.value.status == "success") {
             localStorage.setItem("isAuthenticated", true);
+            localStorage.setItem(
+                "userData",
+                JSON.stringify({
+                    username: `${response.value.username}`,
+                    id: `${response.value.id}`,
+                }),
+            );
             router.push("/dashboard");
         } else {
-            localStorage.setItem("isAuthenticated", false);
             isError.value = true;
         }
     } catch (error) {

@@ -1,11 +1,25 @@
 <template>
-    <section class="lg:h-screen py-20 px-4 bg-[#e9eef5]">
+    <section class="lg:h-screen py-4 md:px-4 bg-[#e9eef5]">
+        <Modal
+            v-if="showModal"
+            @close="showModal = false"
+            @submit="console.log('submit')"
+        />
         <div
-            class="flex flex-col lg:flex-row lg:justify-between gap-4 lg:h-full mt-20 max-w-[1500px] mx-auto"
+            class="flex flex-col lg:flex-row lg:justify-between gap-4 lg:h-full max-w-[1500px] mx-auto"
         >
-            <!-- right section -->
-            <div class="h-full">
-                <div class="mx-auto mb-2">
+            <!-- left section -->
+            <div>
+                <h1 class="w-full text-center font-bold text-2xl mt-12">
+                    Global Questions
+                </h1>
+                <p
+                    class="font-normal text-md max-w-xl w-[95%] md:w-[80%] mx-auto mb-6 text-slate-800 opacity-80 tracking-tight text-center"
+                >
+                    Siz savollarni faqatgini tadbir tugash vaqtigacha yo'llay
+                    olasiz.
+                </p>
+                <div class="mx-auto mb-2 px-4 md:px-8 lg:px-0">
                     <div
                         class="flex flex-col w-full max-w-[520px] mx-auto leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700 shadow-md"
                     >
@@ -42,19 +56,17 @@
                             {{ eventData.event_name }}.
                         </p>
 
-                        <a
-                            href="#"
-                            class="bg-gray-50 dark:bg-gray-600 rounded-xl p-4 mb-2"
+                        <div
+                            class="bg-gray-50 dark:bg-gray-600 rounded-sm p-4 mb-2 max-h-[200px] overflow-y-auto"
                         >
                             <span
-                                class="text-sm font-medium text-gray-900 dark:text-white mb-2"
+                                class="text-sm font-medium text-gray-900 dark:text-white mb-2 h-[100px]"
                             >
                                 <b>FAANG</b>: 2 O'zbek Hikoyasi | Vohid Karimov
                                 va Azimjon Pulatov <br /><br />🎯 Suhbat
                                 <a href="https://t.me/vovopapcom" class="link"
                                     >Vohid Karimov</a
-                                >
-                                va
+                                >va
                                 <a
                                     href="https://t.me/lazyprogrammer"
                                     class="link"
@@ -62,23 +74,36 @@
                                 >
                                 Google'gacha bo'lgan yo'li va tajribalari haqida
                                 bo'ladi. <br /><br />📆 6-aprel, 16:00, Toshkent
-                                vaqti
+                                vaqti.
                             </span>
-                        </a>
+                        </div>
 
                         <div
                             class="w-full flex justify-between items-center py-2"
                         >
                             <span
+                                class="text-sm font-normal w-full text-gray-500 dark:text-gray-400"
+                                >Created:
+                                {{ formatDate(eventData.created) }}</span
+                            >
+                            <span
                                 class="text-sm font-normal w-full text-end text-gray-500 dark:text-gray-400"
-                                >{{ formatDate(eventData.created) }}</span
+                                >End date:
+                                {{ formatDate2(eventData.end_data) }}</span
                             >
                         </div>
+                        <button
+                            type="button"
+                            @click="showModal = true"
+                            class="px-6 py-3 bg-[#1971c2] text-white font-bold rounded-md hover:opacity-90 shadow-sm"
+                        >
+                            Send question
+                        </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Left secction -->
+            <!-- right secction -->
             <div
                 class="w-full lg:w-[70%] max-w-[900px] mx-auto lg:overflow-scroll scrollable-menu px-2"
             >
@@ -90,12 +115,17 @@
 
 <script setup>
 import { ref } from "vue";
-import Header from "../../components/Header.vue";
-import { onMounted } from "vue";
+import { io } from "socket.io-client";
 import { useRoute } from "vue-router";
+import { onMounted } from "vue";
+
 import GlobalQuestions from "./GlobalComments.vue";
-import { ArrowRight } from "lucide-vue-next";
+import FormSendQuestion from "./FormSendQuestion.vue";
+import Modal from "./FormSendQuestion.vue";
 import Alert from "../Alert.vue";
+
+import { ArrowRight } from "lucide-vue-next";
+
 const route = useRoute();
 const { id } = route.params;
 let eventData = ref({});
@@ -104,6 +134,23 @@ const formatDate = (dateString) => {
     try {
         const date = new Date(dateString);
         return date.toLocaleDateString("en-GB");
+    } catch (error) {
+        return "Invalid date";
+    }
+};
+
+const formatDate2 = (dateString) => {
+    try {
+        const date = new Date(dateString);
+        if (isNaN(date)) throw new Error("Invalid date");
+
+        const options = {
+            weekday: "short",
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+        };
+        return date.toLocaleDateString("en-GB", options);
     } catch (error) {
         return "Invalid date";
     }
@@ -128,6 +175,9 @@ const events = async () => {
 onMounted(async () => {
     await events();
 });
+
+// modal send question
+const showModal = ref(false);
 </script>
 
 <style setup>
@@ -148,7 +198,7 @@ onMounted(async () => {
     overflow-y: auto;
     overflow-x: hidden;
     scrollbar-width: thin; /* Firefox uchun yupqa scrollbar */
-    scrollbar-color: #6b7280 #1f2937; /* Firefox uchun scrollbar ranglari */
+    scrollbar-color: #6b7280 #e3e3e3; /* Firefox uchun scrollbar ranglari */
 }
 /* Webkit (Chrome, Safari) uchun scrollbarni sozlash */
 .scrollable-menu::-webkit-scrollbar {
@@ -158,7 +208,7 @@ onMounted(async () => {
     background: #1f2937;
 }
 .scrollable-menu::-webkit-scrollbar-thumb {
-    background-color: #6b7280;
+    background-color: #e3e3e3;
     border-radius: 10px;
     border: 3px solid #1f2937;
 }

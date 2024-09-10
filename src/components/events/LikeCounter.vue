@@ -2,8 +2,9 @@
 import { ref } from "vue";
 import { useRoute } from "vue-router";
 import { twMerge } from "tailwind-merge";
+import { computed } from "vue";
 import Alert from "../../components/Alert.vue";
-import { ThumbsUp, ThumbsDown } from "lucide-vue-next"; // ThumbsUp va ThumbsDown import qilinganligiga ishonch hosil qiling
+import { ArrowBigUp, ArrowBigDown } from "lucide-vue-next"; // ArrowBigUp va ArrowBigDown import qilinganligiga ishonch hosil qiling
 
 const route = useRoute();
 const props = defineProps({
@@ -30,8 +31,8 @@ const props = defineProps({
 const isAlert = ref(false);
 const likeCount = ref(props.likeCount);
 const unlikeCount = ref(props.unlikeCount);
-const likedUsers = ref(props.likedUsers);
-const unlikedUsers = ref(props.unlikedUsers);
+const likedUsers = ref([...props.likedUsers]);
+const unlikedUsers = ref([...props.unlikedUsers]);
 const userId = ref(props.id);
 
 const fetchApi = async (vote, id) => {
@@ -66,6 +67,9 @@ const fetchApi = async (vote, id) => {
     }
 };
 
+const isLiked = computed(() => likedUsers.value.includes(userId.value));
+const isUnliked = computed(() => unlikedUsers.value.includes(userId.value));
+
 // like button
 const like = async () => {
     await fetchApi("like", props.questionId);
@@ -88,32 +92,33 @@ const unlike = async () => {
         </button>
         <div class="flex justify-end items-center gap-4 p-1">
             <div class="flex items-center gap-x-2">
-                <ThumbsUp
+                <ArrowBigUp
                     @click="like"
                     :class="
                         twMerge(
-                            'inline-block w-5 h-5 fill-transparent  transition-colors duration-300 cursor-pointer',
-                            likedUsers.includes(userId) && 'fill-black',
+                            'inline-block w-6 h-6 md:w-7 md:h-7 fill-transparent  transition-colors duration-300 cursor-pointer',
+                            isLiked && 'fill-[#22c55d]',
                         )
                     "
                 />
-                <span class="font-medium text-gray-700">
+                <span class="min-w-4 font-bold text-center text-green-800">
                     {{ likeCount }}
                 </span>
                 <!-- Like count -->
-            </div>
-            <div class="flex items-center gap-x-2">
-                <ThumbsDown
+                <ArrowBigDown
                     @click="unlike"
                     :class="
                         twMerge(
-                            'inline-block w-5 h-5 fill-transparent transition-colors duration-300 cursor-pointer',
-                            unlikedUsers.includes(userId) && 'fill-black',
+                            'inline-block w-6 h-6 md:w-7 md:h-7 fill-transparent transition-colors duration-300 cursor-pointer',
+                            isUnliked && 'fill-[#b91c1c]',
                         )
                     "
                 />
-                <span class="sr-only">{{ unlikeCount }}</span>
+                <span class="min-w-4 font-bold text-center text-red-800">{{
+                    unlikeCount
+                }}</span>
             </div>
+            <!-- <div class="flex items-center gap-x-2"></div> -->
         </div>
     </div>
 </template>

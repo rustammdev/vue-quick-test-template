@@ -4,9 +4,21 @@ import { useRoute } from "vue-router";
 import LikeCounterThumbs from "./LikeCounter.vue";
 let questions = ref([]);
 let questionLength = ref(0);
+let likedUsers = ref([]);
+let unlikedUsers = ref([]);
 const route = useRoute();
 const { id } = route.params;
 const userId = ref("");
+
+import { io } from "socket.io-client";
+// socked
+const socket = io("http://localhost:7000", {
+    path: "/api/socket.io",
+});
+
+// socket.on("sendquestion", (data) => {
+//   if(data.)
+// })
 
 const questionsFetch = async () => {
     try {
@@ -25,6 +37,8 @@ const questionsFetch = async () => {
         if (data.status == "success") {
             userId.value = data.userId;
             questions.value = data["questions"];
+            likedUsers.value = data["questions"].likedUsers;
+            unlikedUsers.value = data["questions"].unLikedUsers;
             questionLength.value = questions.value.length;
         }
     } catch (error) {
@@ -34,7 +48,6 @@ const questionsFetch = async () => {
 
 onMounted(async () => {
     await questionsFetch();
-    console.log(questionLength.value);
 });
 
 function getTimeDifference(createdAt) {

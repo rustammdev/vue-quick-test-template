@@ -8,7 +8,7 @@ import VerifySend from "../views/VerifySend.vue";
 import VerifyEmail from "../views/VerifyEmail.vue";
 import Events from "../views/Events.vue";
 import DashboardEvents from "../components/events/DashboardEvents.vue";
-import SendQuestions from "../components/events/SendQuestion.vue";
+import EventQuestions from "../components/events/EventQuestions.vue";
 import DashboardSettings from "../components/Settings.vue";
 
 const auth = async (to, from, next) => {
@@ -92,8 +92,8 @@ const routes = [
   },
   {
     path: "/events/:id",
-    name: "SendQuestion",
-    component: SendQuestions,
+    name: "EventQuestions",
+    component: EventQuestions,
   },
 
   // mavjud bo'lmagan route

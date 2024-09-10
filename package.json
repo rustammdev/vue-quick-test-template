@@ -14,6 +14,7 @@
     "lucide-vue-next": "^0.437.0",
     "socket.io-client": "^4.7.5",
     "tailwind-merge": "^2.5.2",
+    "uuid": "^10.0.0",
     "vue": "^3.4.37",
     "vue-router": "^4.4.3"
   },
