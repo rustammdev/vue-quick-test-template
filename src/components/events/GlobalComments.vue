@@ -16,10 +16,6 @@ const socket = io("http://localhost:7000", {
     path: "/api/socket.io",
 });
 
-// socket.on("sendquestion", (data) => {
-//   if(data.)
-// })
-
 const questionsFetch = async () => {
     try {
         const res = await fetch(
