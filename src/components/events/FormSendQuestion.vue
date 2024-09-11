@@ -2,6 +2,8 @@
 import { ref } from "vue";
 import { Info } from "lucide-vue-next";
 import { useRoute } from "vue-router";
+import { v4 as uuidv4 } from "uuid";
+import { io } from "socket.io-client";
 const route = useRoute();
 const { id } = route.params;
 
@@ -17,6 +19,15 @@ const isUserExist = ref(
         : false,
 );
 
+const userSockedId = uuidv4();
+localStorage.setItem("userSockedId", userSockedId);
+const sockedIo = io("http://localhost:7000", {
+    path: "/api/socket.io",
+});
+sockedIo.on("connect", () => {
+    console.log("Front-end: You connected to the server");
+    sockedIo.emit("userId", userSockedId);
+});
 // Modalni yopish funksiyasi
 const closeModal = () => {
     emit("close"); // "close" hodisasini uzatish
@@ -54,6 +65,7 @@ const submitForm = async () => {
         if (isUserExist.value.username) {
             questionData = {
                 event_id: id,
+                sockedId: userSockedId,
                 user_id: isUserExist.value.id,
                 username: isUserExist.value.username,
                 message: question.value,
@@ -62,6 +74,7 @@ const submitForm = async () => {
         } else {
             questionData = {
                 event_id: id,
+                sockedId: userSockedId,
                 username: username.value,
                 message: question.value,
                 extralink: extralink.value,

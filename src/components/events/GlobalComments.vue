@@ -16,6 +16,11 @@ const socket = io("http://localhost:7000", {
     path: "/api/socket.io",
 });
 
+socket.on("connect", () => {
+    console.log("Front-end: You connected to the server");
+    socket.on("new-question", (data) => questions.value.push(data));
+});
+
 const questionsFetch = async () => {
     try {
         const res = await fetch(

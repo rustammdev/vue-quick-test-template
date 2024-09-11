@@ -1,18 +1,20 @@
 <template>
-    <section v-if="eventData.length !== 0">
-        <div class="container mx-auto max-w-6xl p-4">
+    <section class="py-12">
+        <div class="p-4 w-full md:mx-auto md:max-w-[1300px]">
             <h3 class="py-6 text-center text-3xl font-bold text-gray-800">
                 Popular Events
             </h3>
-            <div class="mt-2 gap-6 p-4 sm:p-1 md:columns-2 lg:columns-3">
+            <div
+                class="mt-2 sm:p-1 flex overflow-x-auto w-full scroll-container space-x-6 py-4"
+            >
                 <div
-                    class="mx-auto h-fit break-inside-avoid mb-2 cursor-pointer"
+                    class="w-full h-fit cursor-pointer"
                     v-for="(event, index) in eventData"
                     :key="index"
                     @click="moveToEvent(event.id)"
                 >
                     <div
-                        class="flex flex-col w-full max-w-[520px] mx-auto leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700 shadow-md"
+                        class="flex flex-col w-[420px] mx-auto leading-1.5 p-4 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700"
                     >
                         <img
                             src="https://i.ytimg.com/vi/Br7vChhusX8/maxresdefault.jpg"
@@ -68,10 +70,16 @@
                     </div>
                 </div>
             </div>
+            <h3
+                class="py-6 text-center text-lg font-bold text-gray-800 flex justify-center items-center gap-8"
+            >
+                Sroll right
+                <div class="flex gap-2">
+                    <ArrowRight class="h-8" /><ArrowRight class="h-8" />
+                </div>
+            </h3>
         </div>
     </section>
-
-    <SomesingWrong v-if="eventData.length === 0" />
 </template>
 
 <script setup>
@@ -103,6 +111,7 @@ const events = async () => {
             credentials: "include",
         });
         const data = await res.json();
+        console.log(data);
         response.value = data;
     } catch (error) {
         console.error("Fetch error:", error);
@@ -127,5 +136,14 @@ const formatDate = (dateString) => {
 <style scoped>
 .br {
     border: 1px solid red;
+}
+
+.scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* Firefox uchun */
+.scroll-container {
+    scrollbar-width: none; /* Yashiradi */
 }
 </style>
