@@ -43,7 +43,6 @@ import LoadingVue from "../components/Loading.vue";
 const router = useRouter();
 const route = useRoute();
 const token = route.params.token;
-console.log(token);
 
 const loading = ref(false);
 const verificationStatus = ref(null);
@@ -69,7 +68,10 @@ const verifyEmail = async () => {
 
         response.value = await res.json();
         if (response.value.status === "success") {
-            localStorage.setItem("userData", response.value.userData);
+            localStorage.setItem(
+                "userData",
+                JSON.stringify(response.value.userData),
+            );
             localStorage.setItem("isVerify", true);
             verificationStatus.value = "success";
         } else {

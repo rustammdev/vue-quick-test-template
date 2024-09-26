@@ -62,13 +62,13 @@ import {
                         <CalendarCheck2 />
                         Events
                     </RouterLink>
-                    <RouterLink
+                    <!-- <RouterLink
                         to="/events"
                         class="text-md md:text-lg font-bold tracking-tight text-black flex gap-x-6 px-2 py-3 hover:bg-slate-200 rounded-md focus::bg-slate-200 pl-3"
                     >
                         <Send />
-                        Send questions
-                    </RouterLink>
+                        Global Evens
+                    </RouterLink> -->
                     <RouterLink
                         to="/dashboard/settings"
                         class="text-md md:text-lg font-bold tracking-tight text-black flex gap-x-6 px-2 py-3 hover:bg-slate-200 rounded-md focus::bg-slate-200 pl-3"

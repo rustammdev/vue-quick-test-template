@@ -1,9 +1,9 @@
 <template>
-    <section class="lg:h-screen py-4 md:px-4 bg-[#e9eef5]">
+    <section class="py-4 md:px-4 bg-[#e9eef5]">
         <Modal
             v-if="showModal"
             @close="showModal = false"
-            @submit="console.log('submit')"
+            @submit="handleButtonClick"
         />
         <div
             class="flex flex-col lg:flex-row lg:justify-between gap-4 lg:h-full max-w-[1500px] mx-auto"
@@ -24,8 +24,9 @@
                         class="flex flex-col w-full max-w-[520px] mx-auto leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700 shadow-md"
                     >
                         <img
-                            src="https://i.ytimg.com/vi/Br7vChhusX8/maxresdefault.jpg"
-                            alt=""
+                            :src="eventData.imageUrl"
+                            alt="image cover"
+                            class="max-h-[300px] object-cover"
                         />
                         <div
                             class="flex items-center space-x-2 rtl:space-x-reverse mt-2"
@@ -42,12 +43,16 @@
                                 >
                                 <span
                                     class="text-sm font-normal text-gray-500 dark:text-gray-400"
+                                    >Event creator</span
+                                >
+                                <!-- <span
+                                    class="text-sm font-normal text-gray-500 dark:text-gray-400"
                                     >{{
                                         eventData.job
                                             ? eventData.job
                                             : "Software Enginer / Google"
                                     }}</span
-                                >
+                                > -->
                             </div>
                         </div>
                         <p
@@ -95,9 +100,14 @@
                         <button
                             type="button"
                             @click="showModal = true"
+                            :disabled="isDisabled"
                             class="px-6 py-3 bg-[#1971c2] text-white font-bold rounded-md hover:opacity-90 shadow-sm"
                         >
-                            Send question
+                            {{
+                                isDisabled
+                                    ? `Wait ${timer} seconds`
+                                    : "Send question"
+                            }}
                         </button>
                     </div>
                 </div>
@@ -114,10 +124,8 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { io } from "socket.io-client";
+import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
-import { onMounted } from "vue";
 
 import GlobalQuestions from "./GlobalComments.vue";
 import FormSendQuestion from "./FormSendQuestion.vue";
@@ -175,9 +183,49 @@ const events = async () => {
 onMounted(async () => {
     await events();
 });
-
 // modal send question
 const showModal = ref(false);
+
+const isDisabled = ref(false);
+const timer = ref(900);
+const intervalId = ref(null);
+const endTime = ref(null);
+
+const startTimer = () => {
+    intervalId.value = setInterval(() => {
+        if (timer.value > 0) {
+            timer.value--;
+        } else {
+            clearInterval(intervalId.value);
+            isDisabled.value = false;
+            timer.value = 900;
+            localStorage.removeItem("buttonEndTime" + id); // Timer tugagandan so'ng ma'lumotni o'chiramiz
+        }
+    }, 1000);
+};
+
+const handleButtonClick = () => {
+    isDisabled.value = true;
+    const currentTime = new Date();
+    endTime.value = new Date(currentTime.getTime() + timer.value * 1000); // 15 daqiqa hisoblash
+    localStorage.setItem("buttonEndTime" + id, endTime.value); // Saqlaymiz
+    startTimer();
+};
+
+onMounted(() => {
+    // Sahifa yuklanganda localStorage'ni tekshiramiz
+    const storedEndTime = localStorage.getItem("buttonEndTime" + id);
+    if (storedEndTime) {
+        const remainingTime = Math.floor(
+            (new Date(storedEndTime) - new Date()) / 1000,
+        );
+        if (remainingTime > 0) {
+            isDisabled.value = true;
+            timer.value = remainingTime;
+            startTimer();
+        }
+    }
+});
 </script>
 
 <style setup>
@@ -194,11 +242,11 @@ const showModal = ref(false);
 }
 
 .scrollable-menu {
-    max-height: 100%; /* Siz xohlagan maksimal balandlikni qo'shing */
+    max-height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
-    scrollbar-width: thin; /* Firefox uchun yupqa scrollbar */
-    scrollbar-color: #6b7280 #e3e3e3; /* Firefox uchun scrollbar ranglari */
+    scrollbar-width: thin;
+    scrollbar-color: #6b7280 #e3e3e3;
 }
 /* Webkit (Chrome, Safari) uchun scrollbarni sozlash */
 .scrollable-menu::-webkit-scrollbar {

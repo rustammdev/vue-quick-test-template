@@ -4,7 +4,7 @@
 
         <!-- Main Content -->
         <div
-            class="flex-1 p-4 sm:px-6 lg:px-12 xl:px-24 h-screen overflow-y-auto bg-[#ffffff] text-black"
+            class="flex-1 p-4 h-screen overflow-y-auto bg-[#ffffff] text-black"
         >
             <router-view />
         </div>

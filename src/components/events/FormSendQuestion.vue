@@ -1,6 +1,5 @@
 <script setup>
 import { ref } from "vue";
-import { Info } from "lucide-vue-next";
 import { useRoute } from "vue-router";
 import { v4 as uuidv4 } from "uuid";
 import { io } from "socket.io-client";
@@ -19,24 +18,24 @@ const isUserExist = ref(
         : false,
 );
 
-const userSockedId = uuidv4();
-localStorage.setItem("userSockedId", userSockedId);
-const sockedIo = io("http://localhost:7000", {
+const userSocketId = uuidv4();
+localStorage.setItem("userSocketId", userSocketId);
+const socketIo = io("http://localhost:7000", {
     path: "/api/socket.io",
 });
-sockedIo.on("connect", () => {
+socketIo.on("connect", () => {
     console.log("Front-end: You connected to the server");
-    sockedIo.emit("userId", userSockedId);
+    socketIo.emit("userId", userSocketId);
 });
-// Modalni yopish funksiyasi
+
 const closeModal = () => {
-    emit("close"); // "close" hodisasini uzatish
+    emit("close");
 };
+
 const onSubmit = () => {
     emit("submit");
 };
 
-// Send questions api
 const fetchApi = async (params) => {
     try {
         const res = await fetch(
@@ -50,36 +49,31 @@ const fetchApi = async (params) => {
                 body: JSON.stringify(params),
             },
         );
-
         const data = await res.json();
-        console.log(data);
     } catch (e) {
         console.error("Fetch error", e.message);
     }
 };
 
-// Savol yuborish funksiyasi
 let questionData = {};
 const submitForm = async () => {
     if (question.value.length <= maxQuestionLength.value) {
-        if (isUserExist.value.username) {
+        if (isUserExist.value?.username) {
             questionData = {
                 event_id: id,
-                sockedId: userSockedId,
+                socketId: userSocketId,
                 user_id: isUserExist.value.id,
                 username: isUserExist.value.username,
                 message: question.value,
             };
-            console.log("User mavjud", questionData);
         } else {
             questionData = {
                 event_id: id,
-                sockedId: userSockedId,
+                socketId: userSocketId,
                 username: username.value,
                 message: question.value,
                 extralink: extralink.value,
             };
-            console.log("User mavjud emas", questionData);
         }
         await fetchApi(questionData);
         closeModal();
@@ -163,7 +157,6 @@ const submitForm = async () => {
                                     v-model="isChecked"
                                 />Don't contact me.</label
                             >
-                            {{ isChecked }}
                         </div>
                     </div>
                 </div>

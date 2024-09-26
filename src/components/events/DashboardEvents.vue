@@ -1,3 +1,148 @@
+<script setup>
+import { ref, onMounted } from "vue";
+import CreateEventVue from "./CreateEvent.vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+const eventData = ref([]);
+const moderEvents = ref([]);
+const showCreateEvetnModel = ref(false);
+
+const fetchEvents = async () => {
+    try {
+        const res = await fetch(`http://localhost:7000/api/event`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            credentials: "include",
+        });
+        const data = await res.json();
+        if (!data.authenticated) {
+            router.forward("/auth/login");
+        }
+        console.log(data);
+        eventData.value = data["events"];
+        moderEvents.value = data["user_moderators"];
+    } catch (error) {
+        console.error("Fetch error:", error);
+    }
+};
+
+onMounted(async () => {
+    await fetchEvents();
+});
+
+const formatDate = (dateString) => {
+    try {
+        const date = new Date(dateString);
+        return date.toLocaleDateString("en-GB");
+    } catch (error) {
+        return "Invalid date";
+    }
+};
+
+const formatDate2 = (dateString) => {
+    try {
+        const date = new Date(dateString);
+        if (isNaN(date)) throw new Error("Invalid date");
+
+        const options = {
+            weekday: "short",
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+        };
+        return date.toLocaleDateString("en-GB", options);
+    } catch (error) {
+        return "Invalid date";
+    }
+};
+</script>
+
 <template>
-    <div>Events</div>
+    <CreateEventVue
+        v-if="showCreateEvetnModel"
+        @close="showCreateEvetnModel = false"
+    />
+    <div class="max-w-6xl mx-auto py-2">
+        <button
+            @click="showCreateEvetnModel = true"
+            class="border rounded-lg px-3 py-2 bg-slate-900 text-white hover:bg-slate-800 flex justify-center items-center tracking-wide lg:text-md"
+        >
+            creat
+        </button>
+    </div>
+
+    <!-- event container -->
+    <div class="mt-2 gap-6 p-4 sm:p-1 md:columns-2 xl:columns-3">
+        <div
+            class="mx-auto h-fit break-inside-avoid mb-2 cursor-pointer"
+            v-for="(event, index) in eventData"
+            :key="event._id"
+            @click="moveToEvent(event.id)"
+        >
+            <div
+                class="flex flex-col w-full max-w-[520px] mx-auto leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700 shadow-md"
+            >
+                <img
+                    :src="event.imageUrl"
+                    alt="image cover"
+                    class="max-h-[200px] object-cover"
+                />
+                <!-- <div
+                    class="flex items-center space-x-2 rtl:space-x-reverse mt-2"
+                >
+                    <img
+                        src="https://media.licdn.com/dms/image/v2/C4E03AQFO1D7CnV-fHw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1598898707219?e=2147483647&v=beta&t=9tKbCnd7FPD2Y0YbJXD9THsbm9GuHlvk1CvVMfJJYm4"
+                        alt=""
+                        class="h-12 w-12 rounded-full"
+                    />
+                    <div class="flex flex-col mt-1">
+                        <span
+                            class="text-sm font-semibold text-gray-900 dark:text-white"
+                            >{{ event.name }}</span
+                        >
+                        <span
+                            class="text-sm font-normal text-gray-500 dark:text-gray-400"
+                            >{{
+                                event.job
+                                    ? event.job
+                                    : "Software Enginer / Google"
+                            }}</span
+                        >
+                    </div>
+                </div> -->
+                <p
+                    class="text-md tracking-tight font-normal py-2.5 text-gray-900 dark:text-white"
+                >
+                    {{ event.event_name }}.
+                </p>
+
+                <a
+                    href="#"
+                    class="bg-gray-50 dark:bg-gray-600 rounded-xl p-4 mb-2 hover:bg-gray-200 dark:hover:bg-gray-500"
+                >
+                    <span
+                        class="text-sm font-medium text-gray-900 dark:text-white mb-2"
+                        >{{ event.event_desc }}</span
+                    >
+                </a>
+
+                <div class="w-full flex justify-between items-center py-2">
+                    <span
+                        class="text-sm font-normal w-full text-end text-gray-500 dark:text-gray-400"
+                        >Created: {{ formatDate(event.createdAt) }}</span
+                    >
+                    <span
+                        class="text-sm font-normal w-full text-end text-gray-500 dark:text-gray-400"
+                        >End date: {{ formatDate(event.end_date) }}</span
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div>{{ eventData }}</div>
+    <div>{{ moderEvents }}</div> -->
 </template>

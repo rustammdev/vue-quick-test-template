@@ -15,8 +15,9 @@
                         class="flex flex-col w-full max-w-[520px] mx-auto leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700 shadow-md"
                     >
                         <img
-                            src="https://i.ytimg.com/vi/Br7vChhusX8/maxresdefault.jpg"
-                            alt=""
+                            :src="event.imageUrl"
+                            alt="image cover"
+                            class="max-h-[200px] object-cover"
                         />
                         <div
                             class="flex items-center space-x-2 rtl:space-x-reverse mt-2"
